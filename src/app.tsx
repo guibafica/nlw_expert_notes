@@ -26,7 +26,7 @@ export function App() {
         {notesFakeData.map((fakeData) => (
           <NoteCard
             key={Math.random()}
-            title={fakeData.title}
+            date={fakeData.date}
             body={fakeData.body}
           />
         ))}
