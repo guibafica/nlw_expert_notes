@@ -1,4 +1,5 @@
 import { NoteCard } from "./components/note-card";
+import { NewNoteCard } from "./components/new-note-card";
 
 import { notesFakeData } from "./utils/notesFakeData";
 
@@ -20,13 +21,7 @@ export function App() {
       <div className="h-px bg-slate-700" />
 
       <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">
-        <div className="rounded-md bg-slate-700 p-5 space-y-3">
-          <span className="text-sm font-medium text-slate-200">Add note</span>
-
-          <p className="text-sm leading-6 text-slate-400">
-            Record an audio note that will be converted to text automatically.
-          </p>
-        </div>
+        <NewNoteCard />
 
         {notesFakeData.map((fakeData) => (
           <NoteCard
