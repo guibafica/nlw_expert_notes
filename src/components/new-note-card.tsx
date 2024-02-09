@@ -1,9 +1,11 @@
-import { useState, useCallback, ChangeEvent } from "react";
+import { useState, useCallback, ChangeEvent, FormEvent } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import { toast } from "sonner";
 
 export function NewNoteCard() {
   const [shouldShowOnboarding, setShouldShowOnboarding] = useState(true);
+  const [content, setContent] = useState("");
 
   const handleStartEditor = useCallback(() => {
     setShouldShowOnboarding(false);
@@ -11,9 +13,20 @@ export function NewNoteCard() {
 
   const handleContentChange = useCallback(
     (event: ChangeEvent<HTMLTextAreaElement>) => {
+      setContent(event.target.value);
+
       if (event.target.value === "") setShouldShowOnboarding(true);
     },
     []
+  );
+
+  const handleSaveNote = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
+
+      toast.success("Note created successfully!");
+    },
+    [content]
   );
 
   return (
@@ -34,41 +47,43 @@ export function NewNoteCard() {
             <X className="size-5" />
           </Dialog.Close>
 
-          <div className="flex flex-1 flex-col gap-3 p-5">
-            <span className="text-sm font-medium text-slate-300">
-              Add a note
-            </span>
+          <form onSubmit={handleSaveNote} className="flex-1 flex flex-col">
+            <div className="flex flex-1 flex-col gap-3 p-5">
+              <span className="text-sm font-medium text-slate-300">
+                Add a note
+              </span>
 
-            {shouldShowOnboarding ? (
-              <p className="text-sm leading-6 text-slate-400">
-                Start by{" "}
-                <button className="font-medium text-lime-400 hover:underline">
-                  recording an audio note
-                </button>{" "}
-                or, if you prefer,{" "}
-                <button
-                  onClick={handleStartEditor}
-                  className="font-medium text-lime-400 hover:underline"
-                >
-                  just use text
-                </button>
-                .
-              </p>
-            ) : (
-              <textarea
-                autoFocus
-                onChange={handleContentChange}
-                className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none"
-              />
-            )}
-          </div>
+              {shouldShowOnboarding ? (
+                <p className="text-sm leading-6 text-slate-400">
+                  Start by{" "}
+                  <button className="font-medium text-lime-400 hover:underline">
+                    recording an audio note
+                  </button>{" "}
+                  or, if you prefer,{" "}
+                  <button
+                    onClick={handleStartEditor}
+                    className="font-medium text-lime-400 hover:underline"
+                  >
+                    just use text
+                  </button>
+                  .
+                </p>
+              ) : (
+                <textarea
+                  autoFocus
+                  onChange={handleContentChange}
+                  className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none"
+                />
+              )}
+            </div>
 
-          <button
-            type="button"
-            className="w-full bg-lime-400 py-4 text-center text-sm text-lime-950 outline-none font-medium  hover:bg-lime-500 transition-all"
-          >
-            Save note
-          </button>
+            <button
+              type="submit"
+              className="w-full bg-lime-400 py-4 text-center text-sm text-lime-950 outline-none font-medium  hover:bg-lime-500 transition-all"
+            >
+              Save note
+            </button>
+          </form>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
