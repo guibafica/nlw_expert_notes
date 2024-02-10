@@ -3,6 +3,7 @@ import { formatDistanceToNow } from "date-fns";
 import { X } from "lucide-react";
 
 export interface INoteCardProps {
+  id: number;
   date: Date;
   body: string[];
 }
