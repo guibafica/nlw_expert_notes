@@ -12,11 +12,9 @@ export function NoteCard(payload: INoteProps) {
           {formatDistanceToNow(payload.date)} ago
         </span>
 
-        {payload.body.map((bodyText) => (
-          <p className="text-sm leading-6 text-slate-400" key={Math.random()}>
-            {bodyText}
-          </p>
-        ))}
+        <p className="text-sm leading-6 text-slate-400" key={Math.random()}>
+          {payload.body}
+        </p>
 
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/60 to-black/0 pointer-events-none" />
       </Dialog.Trigger>
@@ -34,14 +32,9 @@ export function NoteCard(payload: INoteProps) {
               {formatDistanceToNow(payload.date)} ago
             </span>
 
-            {payload.body.map((bodyText) => (
-              <p
-                className="text-sm leading-6 text-slate-400"
-                key={Math.random()}
-              >
-                {bodyText}
-              </p>
-            ))}
+            <p className="text-sm leading-6 text-slate-400" key={Math.random()}>
+              {payload.body}
+            </p>
           </div>
 
           <button
