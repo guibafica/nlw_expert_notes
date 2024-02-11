@@ -1,4 +1,5 @@
 import { ChangeEvent, useCallback, useState } from "react";
+import { toast } from "sonner";
 
 import { NoteCard } from "./components/note-card";
 import { NewNoteCard } from "./components/new-note-card";
@@ -48,6 +49,22 @@ export function App() {
     setSearch(query);
   }, []);
 
+  const handleDeleteNote = useCallback((id: string) => {
+    const storedNotes = localStorage.getItem("notes");
+
+    if (storedNotes) {
+      const notesArray = JSON.parse(storedNotes);
+      const newNotesArray = notesArray.filter(
+        (note: INoteProps) => note.id !== id
+      );
+
+      setNotes(newNotesArray);
+      localStorage.setItem("notes", JSON.stringify(newNotesArray));
+
+      toast.success("Note deleted successfully!");
+    }
+  }, []);
+
   return (
     <div className="mx-auto max-w-6xl my-12 space-y-6">
       <img src={logo} alt="NLW Expert" />
@@ -69,9 +86,12 @@ export function App() {
         {filteredNotes.map((currentNote) => (
           <NoteCard
             key={Math.random()}
-            id={currentNote.id}
-            date={currentNote.date}
-            body={currentNote.body}
+            payload={{
+              id: currentNote.id,
+              date: currentNote.date,
+              body: currentNote.body,
+            }}
+            handleDeleteNote={(noteId) => handleDeleteNote(noteId)}
           />
         ))}
       </div>
