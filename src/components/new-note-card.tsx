@@ -30,6 +30,9 @@ export function NewNoteCard({ onNoteCreated }: INewNoteCardProps) {
 
       onNoteCreated(content);
 
+      setContent("");
+      setShouldShowOnboarding(true);
+
       toast.success("Note created successfully!");
     },
     [content, onNoteCreated]
@@ -77,6 +80,7 @@ export function NewNoteCard({ onNoteCreated }: INewNoteCardProps) {
               ) : (
                 <textarea
                   autoFocus
+                  value={content}
                   onChange={handleContentChange}
                   className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none"
                 />

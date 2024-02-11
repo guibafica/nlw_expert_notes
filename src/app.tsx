@@ -8,7 +8,13 @@ import { INoteProps } from "./interfaces/INoteProps";
 import logo from "./assets/logo-nlw-expert.svg";
 
 export function App() {
-  const [notes, setNotes] = useState<INoteProps[]>([]);
+  const [notes, setNotes] = useState<INoteProps[]>(() => {
+    const notesOnStorage = localStorage.getItem("notes");
+
+    if (notesOnStorage) return JSON.parse(notesOnStorage);
+
+    return [];
+  });
 
   const onNoteCreated = useCallback(
     (content: string) => {
@@ -18,7 +24,12 @@ export function App() {
         body: [content],
       };
 
-      setNotes([newNote, ...notes]);
+      const notesArray = [newNote, ...notes];
+
+      setNotes(notesArray);
+
+      // It's not allowed to pass an array to localStorage, so you must pass a text
+      localStorage.setItem("notes", JSON.stringify(notesArray));
     },
     [notes]
   );
