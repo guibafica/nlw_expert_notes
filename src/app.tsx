@@ -1,17 +1,19 @@
 import { useCallback, useState } from "react";
 
-import { NoteCard, INoteCardProps } from "./components/note-card";
+import { NoteCard } from "./components/note-card";
 import { NewNoteCard } from "./components/new-note-card";
+
+import { INoteProps } from "./interfaces/INoteProps";
 
 import logo from "./assets/logo-nlw-expert.svg";
 
 export function App() {
-  const [notes, setNotes] = useState<INoteCardProps[]>([]);
+  const [notes, setNotes] = useState<INoteProps[]>([]);
 
   const onNoteCreated = useCallback(
     (content: string) => {
       const newNote = {
-        id: Math.random(),
+        id: crypto.randomUUID(),
         date: new Date(),
         body: [content],
       };
@@ -38,10 +40,10 @@ export function App() {
       <div className="grid grid-cols-3 gap-6 auto-rows-[250px]">
         <NewNoteCard onNoteCreated={onNoteCreated} />
 
-        {notes.map((currentNote, currentNoteIndex) => (
+        {notes.map((currentNote) => (
           <NoteCard
             key={Math.random()}
-            id={currentNoteIndex}
+            id={currentNote.id}
             date={currentNote.date}
             body={currentNote.body}
           />

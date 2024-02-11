@@ -2,13 +2,9 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { formatDistanceToNow } from "date-fns";
 import { X } from "lucide-react";
 
-export interface INoteCardProps {
-  id: number;
-  date: Date;
-  body: string[];
-}
+import { INoteProps } from "../interfaces/INoteProps";
 
-export function NoteCard(payload: INoteCardProps) {
+export function NoteCard(payload: INoteProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger className="rounded-md text-left flex-col bg-slate-800 p-5 gap-3 overflow-hidden relative outline-none hover:ring-2 hover:ring-slate-600 focus-visible:ring-2 focus-visible:ring-lime-400">
