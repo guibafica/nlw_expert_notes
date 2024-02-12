@@ -9,7 +9,7 @@ Expert Notes is a Frontend Web-focused project, which represents a note-taking a
 <img
   alt="Expert Notes" 
   title="Expert Notes' presentation gif" 
-  src="/presentationGif.gif" 
+  src="./github/dude/logo-nlw-expert.svg" 
   height="425" 
 />
 
