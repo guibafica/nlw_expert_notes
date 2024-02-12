@@ -1,4 +1,4 @@
-# Expert Notes
+<h1 align="center">Expert Notes</h1>
 
 # About the project
 
