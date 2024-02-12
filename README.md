@@ -9,7 +9,7 @@ Expert Notes is a Frontend Web-focused project, which represents a note-taking a
 <img
   alt="Expert Notes" 
   title="Expert Notes' presentation gif" 
-  src="./github/presentationGif.gif" 
+  src="./github/blob/main/src/assets/logo-nlw-expert.svg" 
   height="425" 
 />
 
@@ -46,4 +46,4 @@ npm run dev
 
 Made with 💜 by Guilherme Bafica 👋
 
-[![LinkedIn Badge](https://img.shields.io/badge/-guilhermebafica-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/guilhermebafica/)](https://www.linkedin.com/in/guilhermebafica/)
+[![LinkedIn Badge](https://img.shields.io/badge/-GuilhermeBafica-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/guilhermebafica/)](https://www.linkedin.com/in/guilhermebafica/)
